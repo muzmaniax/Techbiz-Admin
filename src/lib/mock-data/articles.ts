@@ -1,0 +1,177 @@
+export type ArticleStatus = 'draft' | 'published' | 'scheduled';
+
+export interface Article {
+  id: string;
+  title: string;
+  slug: string;
+  content: string;
+  excerpt: string;
+  status: ArticleStatus;
+  category: string;
+  tags: string[];
+  seoTitle: string;
+  metaDescription: string;
+  featuredImage: string;
+  author: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string | null;
+  scheduledAt: string | null;
+}
+
+export const categories = [
+  'Technology',
+  'Business',
+  'Marketing',
+  'Engineering',
+  'Product',
+  'Culture',
+  'Case Study',
+];
+
+export const articles: Article[] = [
+  {
+    id: '1',
+    title: 'The Future of AI in Enterprise Software',
+    slug: 'future-ai-enterprise-software',
+    content: `<h2>Introduction</h2><p>Artificial intelligence is transforming how enterprises build, deploy, and maintain software systems. From automated testing to intelligent code generation, AI is reshaping every aspect of the software development lifecycle.</p><h2>Key Trends</h2><p>Several key trends are emerging in enterprise AI adoption:</p><ul><li><strong>Automated Code Review</strong> — AI-powered tools can now identify bugs, security vulnerabilities, and performance issues with remarkable accuracy.</li><li><strong>Predictive Analytics</strong> — Machine learning models are enabling businesses to forecast demand, optimize pricing, and anticipate customer needs.</li><li><strong>Natural Language Interfaces</strong> — Conversational AI is making complex enterprise systems accessible to non-technical users.</li></ul><h2>Implementation Strategy</h2><p>Successful AI implementation requires a phased approach. Start with well-defined use cases where the ROI is clear, then gradually expand to more complex scenarios. Training data quality is paramount — garbage in, garbage out remains the cardinal rule of machine learning.</p><p>Organizations should invest in building internal AI competency rather than relying solely on external vendors. The companies that will thrive in the AI era are those that treat AI as a core capability, not just a bolt-on feature.</p>`,
+    excerpt: 'Exploring how AI is reshaping enterprise software development and deployment strategies.',
+    status: 'published',
+    category: 'Technology',
+    tags: ['AI', 'Enterprise', 'Software'],
+    seoTitle: 'The Future of AI in Enterprise Software | TechBiz Insights',
+    metaDescription: 'Discover how artificial intelligence is transforming enterprise software development, from automated testing to intelligent code generation.',
+    featuredImage: '/images/ai-enterprise.jpg',
+    author: 'Emily Rodriguez',
+    createdAt: '2026-04-01T10:00:00Z',
+    updatedAt: '2026-04-15T14:30:00Z',
+    publishedAt: '2026-04-10T09:00:00Z',
+    scheduledAt: null,
+  },
+  {
+    id: '2',
+    title: 'Building Scalable Microservices Architecture',
+    slug: 'scalable-microservices-architecture',
+    content: `<h2>Why Microservices?</h2><p>Monolithic applications become increasingly difficult to maintain as they grow. Microservices architecture offers a solution by decomposing applications into small, independent services that can be developed, deployed, and scaled independently.</p><h2>Design Principles</h2><p>When designing microservices, follow these core principles: single responsibility, loose coupling, high cohesion, and API-first design. Each service should own its data and communicate through well-defined interfaces.</p>`,
+    excerpt: 'A comprehensive guide to designing and implementing microservices that scale.',
+    status: 'published',
+    category: 'Engineering',
+    tags: ['Microservices', 'Architecture', 'DevOps'],
+    seoTitle: 'Building Scalable Microservices Architecture | TechBiz',
+    metaDescription: 'Learn how to design and implement microservices architecture that scales with your business needs.',
+    featuredImage: '/images/microservices.jpg',
+    author: 'Emily Rodriguez',
+    createdAt: '2026-03-20T08:00:00Z',
+    updatedAt: '2026-04-12T11:00:00Z',
+    publishedAt: '2026-03-25T09:00:00Z',
+    scheduledAt: null,
+  },
+  {
+    id: '3',
+    title: 'Q2 Growth Strategy: Data-Driven Marketing',
+    slug: 'q2-growth-strategy-data-driven',
+    content: `<h2>Overview</h2><p>Our Q2 marketing strategy focuses on leveraging data analytics to optimize campaign performance and drive sustainable growth. This article outlines key initiatives and KPIs.</p>`,
+    excerpt: 'Our data-driven approach to marketing growth in Q2 2026.',
+    status: 'draft',
+    category: 'Marketing',
+    tags: ['Marketing', 'Growth', 'Analytics'],
+    seoTitle: '',
+    metaDescription: '',
+    featuredImage: '',
+    author: 'Emily Rodriguez',
+    createdAt: '2026-04-25T16:00:00Z',
+    updatedAt: '2026-04-27T09:30:00Z',
+    publishedAt: null,
+    scheduledAt: null,
+  },
+  {
+    id: '4',
+    title: 'How TechBiz Reduced Deployment Time by 80%',
+    slug: 'techbiz-reduced-deployment-time',
+    content: `<h2>The Challenge</h2><p>Our deployment pipeline was taking an average of 45 minutes, causing bottlenecks in our release cycle. We needed a faster, more reliable way to ship code to production.</p><h2>The Solution</h2><p>By implementing containerized builds, parallel testing, and progressive rollouts, we reduced deployment time from 45 minutes to under 9 minutes.</p>`,
+    excerpt: 'A case study on how we transformed our CI/CD pipeline for faster releases.',
+    status: 'published',
+    category: 'Case Study',
+    tags: ['DevOps', 'CI/CD', 'Performance'],
+    seoTitle: 'Case Study: 80% Faster Deployments | TechBiz',
+    metaDescription: 'Learn how TechBiz reduced deployment time by 80% through containerized builds and parallel testing.',
+    featuredImage: '/images/deployment.jpg',
+    author: 'Emily Rodriguez',
+    createdAt: '2026-04-05T12:00:00Z',
+    updatedAt: '2026-04-18T10:00:00Z',
+    publishedAt: '2026-04-08T09:00:00Z',
+    scheduledAt: null,
+  },
+  {
+    id: '5',
+    title: 'The Complete Guide to Remote Team Management',
+    slug: 'complete-guide-remote-team-management',
+    content: `<h2>Building Remote Culture</h2><p>Managing remote teams requires intentional effort to build culture, trust, and communication. This guide covers everything from async workflows to virtual team building.</p>`,
+    excerpt: 'Everything you need to know about managing high-performing remote teams.',
+    status: 'scheduled',
+    category: 'Culture',
+    tags: ['Remote Work', 'Management', 'Culture'],
+    seoTitle: 'Complete Guide to Remote Team Management | TechBiz',
+    metaDescription: 'Master remote team management with our comprehensive guide covering culture, communication, and productivity.',
+    featuredImage: '/images/remote-team.jpg',
+    author: 'Emily Rodriguez',
+    createdAt: '2026-04-20T14:00:00Z',
+    updatedAt: '2026-04-26T16:00:00Z',
+    publishedAt: null,
+    scheduledAt: '2026-05-01T09:00:00Z',
+  },
+  {
+    id: '6',
+    title: 'Product-Led Growth: Lessons from 100 SaaS Companies',
+    slug: 'product-led-growth-lessons',
+    content: `<h2>What is PLG?</h2><p>Product-led growth is a business methodology where the product itself is the primary driver of customer acquisition, conversion, and expansion.</p>`,
+    excerpt: 'Insights from analyzing 100 SaaS companies that successfully implemented PLG strategies.',
+    status: 'draft',
+    category: 'Product',
+    tags: ['SaaS', 'Growth', 'Product Strategy'],
+    seoTitle: '',
+    metaDescription: '',
+    featuredImage: '',
+    author: 'Emily Rodriguez',
+    createdAt: '2026-04-26T11:00:00Z',
+    updatedAt: '2026-04-27T15:00:00Z',
+    publishedAt: null,
+    scheduledAt: null,
+  },
+  {
+    id: '7',
+    title: 'Cybersecurity Best Practices for Startups',
+    slug: 'cybersecurity-best-practices-startups',
+    content: `<h2>Security Fundamentals</h2><p>Startups often deprioritize security, but a single breach can be fatal. This guide covers essential security practices every startup should implement from day one.</p>`,
+    excerpt: 'Essential security practices every startup should implement from day one.',
+    status: 'scheduled',
+    category: 'Technology',
+    tags: ['Security', 'Startups', 'Best Practices'],
+    seoTitle: 'Cybersecurity Best Practices for Startups | TechBiz',
+    metaDescription: 'Essential cybersecurity practices for startups to protect against threats and build trust.',
+    featuredImage: '/images/security.jpg',
+    author: 'Emily Rodriguez',
+    createdAt: '2026-04-22T09:00:00Z',
+    updatedAt: '2026-04-25T13:00:00Z',
+    publishedAt: null,
+    scheduledAt: '2026-05-05T09:00:00Z',
+  },
+  {
+    id: '8',
+    title: 'Understanding Customer Lifetime Value',
+    slug: 'understanding-customer-lifetime-value',
+    content: `<h2>What is CLV?</h2><p>Customer Lifetime Value (CLV) is the total revenue a business can expect from a single customer account throughout their relationship.</p>`,
+    excerpt: 'A deep dive into CLV calculation, optimization, and strategic implications.',
+    status: 'published',
+    category: 'Business',
+    tags: ['Business', 'Analytics', 'Customer Success'],
+    seoTitle: 'Understanding Customer Lifetime Value | TechBiz',
+    metaDescription: 'Learn how to calculate and optimize Customer Lifetime Value for sustainable business growth.',
+    featuredImage: '/images/clv.jpg',
+    author: 'Emily Rodriguez',
+    createdAt: '2026-03-15T10:00:00Z',
+    updatedAt: '2026-04-20T09:00:00Z',
+    publishedAt: '2026-03-18T09:00:00Z',
+    scheduledAt: null,
+  },
+];
