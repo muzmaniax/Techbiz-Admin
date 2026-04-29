@@ -61,7 +61,7 @@ export default function EditOpportunityPage() {
           <ArrowLeft size={18} />
         </Link>
         <div>
-          <h1 style={{ fontSize: 24, fontWeight: 800, color: 'var(--text-primary)', marginBottom: 2 }}>Edit Opportunity</h1>
+          <h1 style={{ fontSize: 24, fontWeight: 500, color: 'var(--text-primary)', marginBottom: 2 }}>Edit Opportunity</h1>
           <p style={{ fontSize: 13, color: 'var(--text-tertiary)' }}>ID: {id} • Update listing details and publication status</p>
         </div>
         <div style={{ marginLeft: 'auto', display: 'flex', gap: 12 }}>
@@ -80,12 +80,12 @@ export default function EditOpportunityPage() {
           <div className="card" style={{ padding: 24 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
               <FileText size={18} style={{ color: 'var(--brand-cyan)' }} />
-              <h2 style={{ fontSize: 16, fontWeight: 700, color: 'var(--text-primary)' }}>Role Information</h2>
+              <h2 style={{ fontSize: 16, fontWeight: 500, color: 'var(--text-primary)' }}>Role Information</h2>
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
               <div>
-                <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: 'var(--text-secondary)', marginBottom: 8 }}>Opportunity Title</label>
+                <label style={{ display: 'block', fontSize: 13, fontWeight: 500, color: 'var(--text-secondary)', marginBottom: 8 }}>Opportunity Title</label>
                 <input 
                   type="text" 
                   className="input" 
@@ -96,7 +96,7 @@ export default function EditOpportunityPage() {
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
                 <div>
-                  <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: 'var(--text-secondary)', marginBottom: 8 }}>Department</label>
+                  <label style={{ display: 'block', fontSize: 13, fontWeight: 500, color: 'var(--text-secondary)', marginBottom: 8 }}>Department</label>
                   <input 
                     type="text" 
                     className="input" 
@@ -105,7 +105,7 @@ export default function EditOpportunityPage() {
                   />
                 </div>
                 <div>
-                  <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: 'var(--text-secondary)', marginBottom: 8 }}>Location</label>
+                  <label style={{ display: 'block', fontSize: 13, fontWeight: 500, color: 'var(--text-secondary)', marginBottom: 8 }}>Location</label>
                   <input 
                     type="text" 
                     className="input" 
@@ -116,7 +116,7 @@ export default function EditOpportunityPage() {
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: 'var(--text-secondary)', marginBottom: 8 }}>Job Description</label>
+                <label style={{ display: 'block', fontSize: 13, fontWeight: 500, color: 'var(--text-secondary)', marginBottom: 8 }}>Job Description</label>
                 <textarea 
                   className="input" 
                   style={{ minHeight: 180, paddingTop: 12, resize: 'vertical' }}
@@ -126,7 +126,7 @@ export default function EditOpportunityPage() {
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: 'var(--text-secondary)', marginBottom: 8 }}>Requirements</label>
+                <label style={{ display: 'block', fontSize: 13, fontWeight: 500, color: 'var(--text-secondary)', marginBottom: 8 }}>Requirements</label>
                 <textarea 
                   className="input" 
                   style={{ minHeight: 140, paddingTop: 12, resize: 'vertical' }}
@@ -144,12 +144,12 @@ export default function EditOpportunityPage() {
           <div className="card" style={{ padding: 20 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
               <Settings size={16} style={{ color: 'var(--brand-cyan)' }} />
-              <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-primary)' }}>Settings</h2>
+              <h2 style={{ fontSize: 14, fontWeight: 500, color: 'var(--text-primary)' }}>Settings</h2>
             </div>
             
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               <div>
-                <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: 'var(--text-secondary)', marginBottom: 6 }}>Employment Type</label>
+                <label style={{ display: 'block', fontSize: 12, fontWeight: 500, color: 'var(--text-secondary)', marginBottom: 6 }}>Employment Type</label>
                 <select 
                   className="input" 
                   style={{ height: 36, fontSize: 13 }}
@@ -164,7 +164,7 @@ export default function EditOpportunityPage() {
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: 'var(--text-secondary)', marginBottom: 6 }}>Publication Status</label>
+                <label style={{ display: 'block', fontSize: 12, fontWeight: 500, color: 'var(--text-secondary)', marginBottom: 6 }}>Publication Status</label>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                   <label style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', padding: '8px 12px', borderRadius: 'var(--radius-md)', background: formData.status === 'published' ? 'var(--brand-cyan-muted)' : 'transparent', border: '1px solid ' + (formData.status === 'published' ? 'var(--brand-cyan)' : 'var(--border-color)') }}>
                     <input type="radio" name="status" checked={formData.status === 'published'} onChange={() => setFormData({...formData, status: 'published'})} />
@@ -182,7 +182,7 @@ export default function EditOpportunityPage() {
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: 'var(--text-secondary)', marginBottom: 6 }}>Application Deadline</label>
+                <label style={{ display: 'block', fontSize: 12, fontWeight: 500, color: 'var(--text-secondary)', marginBottom: 6 }}>Application Deadline</label>
                 <div style={{ position: 'relative' }}>
                   <Clock size={14} style={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)', color: 'var(--text-tertiary)' }} />
                   <input 

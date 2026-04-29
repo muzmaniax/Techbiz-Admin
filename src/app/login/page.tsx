@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Zap, Eye, EyeOff, ArrowRight, Loader2 } from 'lucide-react';
 import { useAuth, getRoleDefaultRoute } from '@/lib/auth-context';
+import { useUI } from '@/lib/ui-context';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -13,6 +14,7 @@ export default function LoginPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [shake, setShake] = useState(false);
   const { login } = useAuth();
+  const { theme } = useUI();
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -91,32 +93,14 @@ export default function LoginPage() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: 12,
             marginBottom: 40,
           }}
         >
-          <div
-            style={{
-              width: 48,
-              height: 48,
-              borderRadius: 'var(--radius-lg)',
-              background: 'var(--brand-cyan)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              boxShadow: '0 0 30px var(--brand-cyan-glow)',
-            }}
-          >
-            <Zap size={26} color="#000" />
-          </div>
-          <div>
-            <div style={{ fontSize: 24, fontWeight: 800, color: 'var(--text-primary)' }}>
-              TechBiz
-            </div>
-            <div style={{ fontSize: 12, color: 'var(--text-tertiary)', letterSpacing: '0.1em' }}>
-              MANAGEMENT SYSTEM
-            </div>
-          </div>
+          <img 
+            src={theme === 'light' ? "/logo-light.png" : "/logo-dark.png"} 
+            alt="TechBiz Logo" 
+            style={{ height: 60, width: 'auto', objectFit: 'contain' }} 
+          />
         </div>
 
         {/* Card */}
@@ -131,7 +115,7 @@ export default function LoginPage() {
           <h1
             style={{
               fontSize: 22,
-              fontWeight: 700,
+              fontWeight: 500,
               color: 'var(--text-primary)',
               marginBottom: 4,
             }}
@@ -243,7 +227,7 @@ export default function LoginPage() {
                 width: '100%',
                 height: 46,
                 fontSize: 15,
-                fontWeight: 600,
+                fontWeight: 500,
               }}
             >
               {isSubmitting ? (
@@ -271,7 +255,7 @@ export default function LoginPage() {
           <div
             style={{
               fontSize: 12,
-              fontWeight: 600,
+              fontWeight: 500,
               color: 'var(--text-tertiary)',
               textTransform: 'uppercase',
               letterSpacing: '0.05em',

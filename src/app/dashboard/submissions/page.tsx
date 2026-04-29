@@ -41,7 +41,6 @@ export default function SubmissionsPage() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [filterType, setFilterType] = useState<SubmissionType | 'all'>('all');
   const [filterStatus, setFilterStatus] = useState<SubmissionStatus | 'all'>('all');
-  const [filterOpportunity, setFilterOpportunity] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [newNote, setNewNote] = useState('');
 
@@ -58,7 +57,6 @@ export default function SubmissionsPage() {
   const filtered = businessSubmissions.filter((s) => {
     if (filterType !== 'all' && s.type !== filterType) return false;
     if (filterStatus !== 'all' && s.status !== filterStatus) return false;
-    if (filterOpportunity !== 'all' && s.opportunityId !== filterOpportunity) return false;
     if (searchQuery && !s.name.toLowerCase().includes(searchQuery.toLowerCase()) && !s.subject.toLowerCase().includes(searchQuery.toLowerCase())) return false;
     return true;
   });
@@ -101,7 +99,7 @@ export default function SubmissionsPage() {
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
         <div>
-          <h1 style={{ fontSize: 24, fontWeight: 800, color: 'var(--text-primary)', marginBottom: 4 }}>Submissions</h1>
+          <h1 style={{ fontSize: 24, fontWeight: 500, color: 'var(--text-primary)', marginBottom: 4 }}>Submissions</h1>
           <p style={{ fontSize: 14, color: 'var(--text-secondary)' }}>Manage applications, consultations, and service inquiries</p>
         </div>
         <div style={{ display: 'flex', gap: 10 }}>
@@ -118,16 +116,22 @@ export default function SubmissionsPage() {
             key={status}
             onClick={() => setFilterStatus(status)}
             className={`btn btn-sm ${filterStatus === status ? 'btn-primary' : 'btn-secondary'}`}
-            style={{ display: 'flex', alignItems: 'center', gap: 6 }}
+            style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: 4, 
+              paddingLeft: 12, 
+              paddingRight: 12,
+              transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)'
+            }}
           >
-            {status === 'all' ? 'All' : statusLabels[status]}
+            <span style={{ fontWeight: 500 }}>{status === 'all' ? 'All' : statusLabels[status]}</span>
             <span
               style={{
-                background: filterStatus === status ? 'rgba(0,0,0,0.15)' : 'var(--bg-elevated)',
-                padding: '1px 8px',
-                borderRadius: 20,
-                fontSize: 11,
-                fontWeight: 700,
+                fontSize: 10,
+                fontWeight: 500,
+                color: filterStatus === status ? 'rgba(0,0,0,0.5)' : 'var(--text-tertiary)',
+                marginLeft: 2,
               }}
             >
               {counts[status]}
@@ -150,12 +154,6 @@ export default function SubmissionsPage() {
               <option value="consultation">Consultation</option>
               <option value="service">Service</option>
             </select>
-            <select className="select" value={filterOpportunity} onChange={(e) => setFilterOpportunity(e.target.value)} style={{ fontSize: 13, height: 36, width: 180 }}>
-              <option value="all">Related Opportunity</option>
-              {opportunities.map(opp => (
-                <option key={opp.id} value={opp.id}>{opp.title}</option>
-              ))}
-            </select>
           </div>
 
           {/* List */}
@@ -163,7 +161,7 @@ export default function SubmissionsPage() {
             {filtered.length === 0 ? (
               <div style={{ padding: 40, textAlign: 'center', animation: 'fadeIn 0.3s ease' }}>
                 <Filter size={40} style={{ color: 'var(--text-tertiary)', marginBottom: 12, opacity: 0.3 }} />
-                <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--text-secondary)', marginBottom: 4 }}>No submissions found</div>
+                <div style={{ fontSize: 15, fontWeight: 500, color: 'var(--text-secondary)', marginBottom: 4 }}>No submissions found</div>
                 <div style={{ fontSize: 13, color: 'var(--text-tertiary)' }}>Adjust your filters to see more results</div>
               </div>
             ) : (
@@ -184,20 +182,13 @@ export default function SubmissionsPage() {
                   }}
                 >
                   {/* Type Icon */}
-                  <div
-                    style={{
-                      width: 40, height: 40, borderRadius: 'var(--radius-md)',
-                      background: sub.id === selectedId ? 'var(--brand-cyan)' : 'var(--bg-tertiary)',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      color: sub.id === selectedId ? '#000' : 'var(--text-secondary)', flexShrink: 0,
-                    }}
-                  >
-                    {typeIcons[sub.type]}
+                  <div style={{ color: 'var(--brand-cyan)', flexShrink: 0, width: 32, display: 'flex', justifyContent: 'center' }}>
+                    {React.cloneElement(typeIcons[sub.type] as React.ReactElement<any>, { size: 24 })}
                   </div>
                   {/* Content */}
                   <div style={{ flex: 1, overflow: 'hidden' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
-                      <span style={{ fontSize: 15, fontWeight: 700, color: 'var(--text-primary)' }}>{sub.name}</span>
+                      <span style={{ fontSize: 15, fontWeight: 500, color: 'var(--text-primary)', letterSpacing: '-0.04em' }}>{sub.name}</span>
                       {sub.status === 'new' && (
                         <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--brand-cyan)', flexShrink: 0 }} />
                       )}
@@ -214,7 +205,7 @@ export default function SubmissionsPage() {
                         {formatDate(sub.createdAt)}
                       </span>
                       {sub.opportunityId && (
-                        <span style={{ fontSize: 11, color: 'var(--brand-cyan)', fontWeight: 600 }}>
+                        <span style={{ fontSize: 11, color: 'var(--brand-cyan)', fontWeight: 500 }}>
                           Linked to Opp
                         </span>
                       )}
@@ -230,7 +221,7 @@ export default function SubmissionsPage() {
                       padding: '2px 8px',
                       borderRadius: '12px',
                       fontSize: '9px',
-                      fontWeight: 600,
+                      fontWeight: 500,
                       background: typeColors[sub.type].bg,
                       color: typeColors[sub.type].text,
                       border: 'none',
@@ -265,8 +256,8 @@ export default function SubmissionsPage() {
             {/* Header */}
             <div style={{ padding: '20px 24px', borderBottom: '1px solid var(--border-color)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'sticky', top: 0, background: 'var(--bg-secondary)', zIndex: 5 }}>
               <div>
-                <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-tertiary)', marginBottom: 4, textTransform: 'uppercase', letterSpacing: '0.1em' }}>Submission ID: {selected.id}</div>
-                <h3 style={{ fontSize: 18, fontWeight: 800, color: 'var(--text-primary)' }}>{selected.name}</h3>
+                <div style={{ fontSize: 11, fontWeight: 500, color: 'var(--text-tertiary)', marginBottom: 4, textTransform: 'uppercase', letterSpacing: '0.1em' }}>Submission ID: {selected.id}</div>
+                <h3 style={{ fontSize: 18, fontWeight: 500, color: 'var(--text-primary)' }}>{selected.name}</h3>
               </div>
               <button className="btn btn-ghost btn-sm" onClick={() => setSelectedId(null)} style={{ width: 32, height: 32, padding: 0 }}>
                 <X size={20} />
@@ -277,14 +268,14 @@ export default function SubmissionsPage() {
               {/* Opportunity Link Card */}
               {relatedOpp && (
                 <div style={{ padding: '16px 24px', background: 'var(--brand-cyan-muted)', borderBottom: '1px solid var(--brand-cyan-muted)' }}>
-                  <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--brand-cyan)', marginBottom: 8, textTransform: 'uppercase' }}>Linked Opportunity</div>
+                  <div style={{ fontSize: 11, fontWeight: 500, color: 'var(--brand-cyan)', marginBottom: 8, textTransform: 'uppercase' }}>Linked Opportunity</div>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                       <div style={{ width: 32, height: 32, borderRadius: 'var(--radius-sm)', background: 'var(--bg-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--brand-cyan)' }}>
                         <Briefcase size={16} />
                       </div>
                       <div>
-                        <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-primary)' }}>{relatedOpp.title}</div>
+                        <div style={{ fontSize: 14, fontWeight: 500, color: 'var(--text-primary)' }}>{relatedOpp.title}</div>
                         <div style={{ fontSize: 12, color: 'var(--text-secondary)' }}>{relatedOpp.department} • {relatedOpp.location}</div>
                       </div>
                     </div>
@@ -297,7 +288,7 @@ export default function SubmissionsPage() {
 
               {/* Status Actions */}
               <div style={{ padding: '20px 24px', borderBottom: '1px solid var(--border-color)' }}>
-                <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--text-tertiary)', marginBottom: 16, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Current Status</div>
+                <div style={{ fontSize: 12, fontWeight: 500, color: 'var(--text-tertiary)', marginBottom: 16, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Current Status</div>
                 <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                   {statusFlow.map((status) => (
                     <button
@@ -314,7 +305,7 @@ export default function SubmissionsPage() {
 
               {/* Contact Info */}
               <div style={{ padding: '20px 24px', borderBottom: '1px solid var(--border-color)' }}>
-                <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--text-tertiary)', marginBottom: 16, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Contact Information</div>
+                <div style={{ fontSize: 12, fontWeight: 500, color: 'var(--text-tertiary)', marginBottom: 16, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Contact Information</div>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 12 }}>
                   <div className="btn btn-secondary" style={{ justifyContent: 'flex-start', padding: '8px 12px', height: 'auto' }}>
                     <Mail size={14} className="text-accent" />
@@ -335,21 +326,21 @@ export default function SubmissionsPage() {
 
               {/* Message */}
               <div style={{ padding: '20px 24px' }}>
-                <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--text-tertiary)', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Submission Content</div>
+                <div style={{ fontSize: 12, fontWeight: 500, color: 'var(--text-tertiary)', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Submission Content</div>
                 <div style={{ padding: 16, background: 'var(--bg-tertiary)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)' }}>
-                  <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--text-primary)', marginBottom: 12 }}>{selected.subject}</div>
+                  <div style={{ fontSize: 15, fontWeight: 500, color: 'var(--text-primary)', marginBottom: 12 }}>{selected.subject}</div>
                   <div style={{ fontSize: 14, color: 'var(--text-secondary)', lineHeight: 1.7, whiteSpace: 'pre-wrap' }}>{selected.message}</div>
                 </div>
               </div>
 
               {/* Notes */}
               <div style={{ padding: '0 24px 24px' }}>
-                <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--text-tertiary)', marginBottom: 16, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Internal Activity</div>
+                <div style={{ fontSize: 12, fontWeight: 500, color: 'var(--text-tertiary)', marginBottom: 16, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Internal Activity</div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 20 }}>
                   {selected.notes.map((note) => (
                     <div key={note.id} style={{ padding: 12, borderRadius: 'var(--radius-md)', background: 'var(--bg-tertiary)', borderLeft: '3px solid var(--brand-cyan)' }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-                        <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--text-primary)' }}>{note.author}</span>
+                        <span style={{ fontSize: 12, fontWeight: 500, color: 'var(--text-primary)' }}>{note.author}</span>
                         <span style={{ fontSize: 11, color: 'var(--text-tertiary)' }}>{formatDateTime(note.createdAt)}</span>
                       </div>
                       <div style={{ fontSize: 13, color: 'var(--text-secondary)', lineHeight: 1.5 }}>{note.content}</div>

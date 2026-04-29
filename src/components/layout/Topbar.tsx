@@ -9,6 +9,7 @@ import { getInitials } from '@/lib/utils';
 
 const pageNames: Record<string, string> = {
   '/dashboard': 'Overview',
+  '/dashboard/overview': 'Overview',
   '/dashboard/analytics': 'Analytics',
   '/dashboard/cms': 'Insights CMS',
   '/dashboard/submissions': 'Submissions',
@@ -51,7 +52,7 @@ export default function Topbar() {
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }} className="hide-mobile">
           <span style={{ fontSize: 13, color: 'var(--text-tertiary)' }}>Dashboard</span>
           <ChevronRight size={14} style={{ color: 'var(--text-tertiary)' }} />
-          <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--text-primary)' }}>
+          <span style={{ fontSize: 14, fontWeight: 500, letterSpacing: '-0.04em', color: 'var(--text-primary)' }}>
             {currentPage}
           </span>
         </div>
@@ -100,9 +101,8 @@ export default function Topbar() {
           style={{
             width: 38,
             height: 38,
-            borderRadius: 'var(--radius-md)',
-            background: 'var(--bg-tertiary)',
-            border: '1px solid var(--border-color)',
+            background: 'transparent',
+            border: 'none',
             color: 'var(--text-secondary)',
             display: 'flex',
             alignItems: 'center',
@@ -111,15 +111,13 @@ export default function Topbar() {
             transition: 'all var(--transition-fast)',
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = 'var(--border-hover)';
-            e.currentTarget.style.color = 'var(--text-primary)';
+            e.currentTarget.style.color = 'var(--brand-cyan)';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.borderColor = 'var(--border-color)';
             e.currentTarget.style.color = 'var(--text-secondary)';
           }}
         >
-          {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
+          {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
         </button>
 
         {/* Notifications */}
@@ -128,9 +126,8 @@ export default function Topbar() {
             position: 'relative',
             width: 38,
             height: 38,
-            borderRadius: 'var(--radius-md)',
-            background: 'var(--bg-tertiary)',
-            border: '1px solid var(--border-color)',
+            background: 'transparent',
+            border: 'none',
             color: 'var(--text-secondary)',
             display: 'flex',
             alignItems: 'center',
@@ -139,20 +136,18 @@ export default function Topbar() {
             transition: 'all var(--transition-fast)',
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = 'var(--border-hover)';
-            e.currentTarget.style.color = 'var(--text-primary)';
+            e.currentTarget.style.color = 'var(--brand-cyan)';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.borderColor = 'var(--border-color)';
             e.currentTarget.style.color = 'var(--text-secondary)';
           }}
         >
-          <Bell size={18} />
+          <Bell size={20} />
           <span
             style={{
               position: 'absolute',
-              top: 6,
-              right: 6,
+              top: 8,
+              right: 8,
               width: 8,
               height: 8,
               borderRadius: '50%',
@@ -185,22 +180,23 @@ export default function Topbar() {
           >
             <div
               style={{
-                width: 30,
-                height: 30,
+                width: 32,
+                height: 32,
                 borderRadius: 'var(--radius-sm)',
-                background: 'linear-gradient(135deg, var(--brand-cyan), var(--brand-cyan))',
+                border: '1px solid var(--border-color)',
+                background: 'var(--bg-tertiary)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 fontSize: 12,
-                fontWeight: 700,
-                color: '#000',
+                fontWeight: 500,
+                color: 'var(--brand-cyan)',
               }}
             >
               {getInitials(user.name)}
             </div>
             <div style={{ lineHeight: 1.3 }}>
-              <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--text-primary)' }}>
+              <div style={{ fontSize: 13, fontWeight: 500, color: 'var(--text-primary)' }}>
                 {user.name}
               </div>
               <div style={{ fontSize: 11, color: 'var(--text-tertiary)' }}>

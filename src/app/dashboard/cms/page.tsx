@@ -10,9 +10,9 @@ import { articles as initialArticles, categories, type Article, type ArticleStat
 import { formatDate, slugify, truncate } from '@/lib/utils';
 
 const statusConfig: Record<ArticleStatus, { label: string; icon: React.ReactNode; badge: string }> = {
-  draft: { label: 'Draft', icon: <FileText size={14} />, badge: 'badge-neutral' },
-  published: { label: 'Published', icon: <CheckCircle2 size={14} />, badge: 'badge-success' },
-  scheduled: { label: 'Scheduled', icon: <Clock size={14} />, badge: 'badge-info' },
+  draft: { label: 'Draft', icon: <FileText size={16} />, badge: 'badge-neutral' },
+  published: { label: 'Published', icon: <CheckCircle2 size={16} />, badge: 'badge-success' },
+  scheduled: { label: 'Scheduled', icon: <Clock size={16} />, badge: 'badge-info' },
 };
 
 export default function CMSPage() {
@@ -103,7 +103,7 @@ export default function CMSPage() {
     <div>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
         <div>
-          <h1 style={{ fontSize: 24, fontWeight: 800, color: 'var(--text-primary)', marginBottom: 4 }}>Insights CMS</h1>
+          <h1 style={{ fontSize: 24, fontWeight: 500, color: 'var(--text-primary)', marginBottom: 4 }}>Insights CMS</h1>
           <p style={{ fontSize: 14, color: 'var(--text-secondary)' }}>
             Create, edit, and publish articles
             {autoSaveStatus === 'saving' && <span style={{ color: 'var(--warning)', marginLeft: 12 }}>● Saving...</span>}
@@ -139,7 +139,7 @@ export default function CMSPage() {
                 key={status}
                 onClick={() => setFilterStatus(status)}
                 style={{
-                  flex: 1, padding: '10px 0', fontSize: 12, fontWeight: 600,
+                  flex: 1, padding: '10px 0', fontSize: 12, fontWeight: 500,
                   background: 'transparent', border: 'none', cursor: 'pointer',
                   color: filterStatus === status ? 'var(--brand-cyan)' : 'var(--text-tertiary)',
                   borderBottom: filterStatus === status ? '2px solid var(--brand-cyan)' : '2px solid transparent',
@@ -148,7 +148,17 @@ export default function CMSPage() {
                   textTransform: 'capitalize',
                 }}
               >
-                {status === 'all' ? 'All' : status}
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
+                  <span style={{ textTransform: 'capitalize' }}>{status === 'all' ? 'All' : status}</span>
+                  <span style={{ 
+                    fontSize: 10, 
+                    fontWeight: 500, 
+                    color: filterStatus === status ? 'var(--brand-cyan)' : 'var(--text-tertiary)',
+                    opacity: filterStatus === status ? 1 : 0.6
+                  }}>
+                    {status === 'all' ? articles.length : articles.filter(a => a.status === status).length}
+                  </span>
+                </div>
               </button>
             ))}
           </div>
@@ -180,7 +190,7 @@ export default function CMSPage() {
                     if (article.id !== selectedId) e.currentTarget.style.background = 'transparent';
                   }}
                 >
-                  <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--text-primary)', marginBottom: 4, lineHeight: 1.3 }}>
+                  <div style={{ fontSize: 13, fontWeight: 500, color: 'var(--text-primary)', marginBottom: 4, lineHeight: 1.3, letterSpacing: '-0.04em' }}>
                     {truncate(article.title, 50)}
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -210,7 +220,7 @@ export default function CMSPage() {
               }}
               style={{
                 width: '100%', background: 'transparent', border: 'none', outline: 'none',
-                fontSize: 20, fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'inherit',
+                fontSize: 20, fontWeight: 500, color: 'var(--text-primary)', fontFamily: 'inherit',
               }}
               placeholder="Article title..."
             />
@@ -270,7 +280,7 @@ export default function CMSPage() {
         <div style={{ display: 'flex', flexDirection: 'column', overflowY: 'auto' }}>
           {/* Status */}
           <div style={{ padding: '16px 20px', borderBottom: '1px solid var(--border-color)' }}>
-            <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 12 }}>
+            <div style={{ fontSize: 12, fontWeight: 500, color: 'var(--text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 12 }}>
               Publish Controls
             </div>
             <div style={{ display: 'flex', gap: 8 }}>
@@ -293,7 +303,7 @@ export default function CMSPage() {
 
           {/* SEO */}
           <div style={{ padding: '16px 20px', borderBottom: '1px solid var(--border-color)' }}>
-            <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 12 }}>
+            <div style={{ fontSize: 12, fontWeight: 500, color: 'var(--text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 12 }}>
               SEO
             </div>
             <div style={{ marginBottom: 12 }}>
@@ -312,7 +322,7 @@ export default function CMSPage() {
 
           {/* Category & Tags */}
           <div style={{ padding: '16px 20px', borderBottom: '1px solid var(--border-color)' }}>
-            <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 12 }}>
+            <div style={{ fontSize: 12, fontWeight: 500, color: 'var(--text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 12 }}>
               Taxonomy
             </div>
             <div style={{ marginBottom: 12 }}>
@@ -352,7 +362,7 @@ export default function CMSPage() {
 
           {/* Featured Image */}
           <div style={{ padding: '16px 20px' }}>
-            <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 12 }}>
+            <div style={{ fontSize: 12, fontWeight: 500, color: 'var(--text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 12 }}>
               Featured Image
             </div>
             <div
@@ -393,7 +403,7 @@ export default function CMSPage() {
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 24px', borderBottom: '1px solid var(--border-color)' }}>
-              <h3 style={{ fontSize: 15, fontWeight: 600, color: 'var(--text-primary)' }}>Preview</h3>
+              <h3 style={{ fontSize: 15, fontWeight: 500, color: 'var(--text-primary)' }}>Preview</h3>
               <div style={{ display: 'flex', gap: 8 }}>
                 <button className={`btn btn-sm ${previewMode === 'desktop' ? 'btn-primary' : 'btn-ghost'}`} onClick={() => setPreviewMode('desktop')}>
                   <Monitor size={16} />
@@ -407,7 +417,7 @@ export default function CMSPage() {
               </div>
             </div>
             <div style={{ padding: '32px 40px' }}>
-              <h1 style={{ fontSize: 28, fontWeight: 800, color: 'var(--text-primary)', marginBottom: 16 }}>{selected.title}</h1>
+              <h1 style={{ fontSize: 28, fontWeight: 500, color: 'var(--text-primary)', marginBottom: 16 }}>{selected.title}</h1>
               <div style={{ display: 'flex', gap: 12, marginBottom: 24, fontSize: 13, color: 'var(--text-secondary)' }}>
                 <span>{selected.author}</span>
                 <span>•</span>

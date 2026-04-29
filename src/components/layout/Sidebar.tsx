@@ -33,7 +33,7 @@ const navItems: NavItem[] = [
 ];
 
 export default function Sidebar() {
-  const { sidebarCollapsed: collapsed, toggleSidebar, mobileSidebarOpen } = useUI();
+  const { sidebarCollapsed: collapsed, toggleSidebar, mobileSidebarOpen, theme } = useUI();
   const pathname = usePathname();
   const { hasAccess, logout, user } = useAuth();
 
@@ -60,56 +60,54 @@ export default function Sidebar() {
       {/* Logo */}
       <div
         style={{
-          padding: collapsed ? '20px 16px' : '20px 24px',
+          padding: '12px 20px',
           borderBottom: '1px solid var(--border-color)',
           display: 'flex',
           alignItems: 'center',
-          gap: 12,
-          minHeight: 'var(--topbar-height)',
+          justifyContent: collapsed ? 'center' : 'flex-start',
+          height: '64px', // Standard compact topbar height
+          flexShrink: 0,
         }}
       >
-        <div
-          style={{
-            width: 36,
-            height: 36,
-            borderRadius: 'var(--radius-md)',
-            background: 'var(--brand-cyan)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexShrink: 0,
-          }}
-        >
-          <Zap size={20} color="#000" />
-        </div>
-        {!collapsed && (
-          <span
-            style={{
-              fontSize: 18,
-              fontWeight: 700,
-              color: 'var(--text-primary)',
-              whiteSpace: 'nowrap',
+        {!collapsed ? (
+          <img 
+            src={theme === 'light' ? "/logo-light.png" : "/logo-dark.png"} 
+            alt="TechBiz" 
+            style={{ 
+              height: 36, 
+              width: 'auto',
+              objectFit: 'contain',
               animation: 'fadeIn 0.3s ease',
-            }}
-          >
-            TechBiz
-          </span>
+              maxWidth: '100%',
+            }} 
+          />
+        ) : (
+          <img 
+            src="/favicon.png" 
+            alt="TechBiz" 
+            style={{ 
+              height: 48,
+              width: 'auto',
+              objectFit: 'contain',
+              maxWidth: '100%',
+            }} 
+          />
         )}
       </div>
 
       {/* Navigation */}
-      <nav style={{ flex: 1, padding: '12px 8px', display: 'flex', flexDirection: 'column', gap: 4 }}>
+      <nav style={{ flex: 1, padding: '12px 8px', display: 'flex', flexDirection: 'column', gap: 2, overflowY: 'auto' }}>
         {/* Dashboard Home */}
         <Link
-          href="/dashboard"
+          href="/dashboard/overview"
           style={{
             display: 'flex',
             alignItems: 'center',
             gap: 12,
-            padding: '10px 16px',
+            padding: '8px 16px',
             borderRadius: 'var(--radius-md)',
-            color: pathname === '/dashboard' ? 'var(--brand-cyan)' : 'var(--text-secondary)',
-            background: pathname === '/dashboard' ? 'var(--brand-cyan-muted)' : 'transparent',
+            color: pathname === '/dashboard/overview' ? 'var(--brand-cyan)' : 'var(--text-secondary)',
+            background: pathname === '/dashboard/overview' ? 'var(--brand-cyan-muted)' : 'transparent',
             textDecoration: 'none',
             fontSize: 14,
             fontWeight: 500,
@@ -145,13 +143,14 @@ export default function Sidebar() {
                 display: 'flex',
                 alignItems: 'center',
                 gap: 12,
-                padding: '10px 16px',
+                padding: '8px 16px',
                 borderRadius: 'var(--radius-md)',
                 color: isActive ? 'var(--brand-cyan)' : 'var(--text-secondary)',
                 background: isActive ? 'var(--brand-cyan-muted)' : 'transparent',
                 textDecoration: 'none',
                 fontSize: 14,
                 fontWeight: 500,
+                letterSpacing: '-0.04em',
                 transition: 'all var(--transition-fast)',
                 whiteSpace: 'nowrap',
               }}
@@ -176,19 +175,19 @@ export default function Sidebar() {
       </nav>
 
       {/* Bottom section */}
-      <div style={{ padding: '12px 8px', borderTop: '1px solid var(--border-color)' }}>
+      <div style={{ padding: '8px', borderTop: '1px solid var(--border-color)', flexShrink: 0 }}>
         {/* User info */}
         {!collapsed && user && (
           <div
             style={{
-              padding: '10px 16px',
-              marginBottom: 8,
+              padding: '8px 12px',
+              marginBottom: 4,
               borderRadius: 'var(--radius-md)',
               background: 'var(--bg-tertiary)',
               animation: 'fadeIn 0.3s ease',
             }}
           >
-            <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--text-primary)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+            <div style={{ fontSize: 13, fontWeight: 500, color: 'var(--text-primary)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
               {user.name}
             </div>
             <div style={{ fontSize: 11, color: 'var(--text-tertiary)', marginTop: 2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
@@ -204,7 +203,7 @@ export default function Sidebar() {
             display: 'flex',
             alignItems: 'center',
             gap: 12,
-            padding: '10px 16px',
+            padding: '8px 16px',
             borderRadius: 'var(--radius-md)',
             color: 'var(--text-secondary)',
             background: 'transparent',
@@ -239,7 +238,7 @@ export default function Sidebar() {
             alignItems: 'center',
             justifyContent: 'center',
             gap: 12,
-            padding: '10px 16px',
+            padding: '8px 16px',
             borderRadius: 'var(--radius-md)',
             color: 'var(--text-tertiary)',
             background: 'transparent',

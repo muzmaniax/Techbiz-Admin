@@ -75,14 +75,8 @@ export function getRoleLabel(role: UserRole): string {
 }
 
 export function getRoleDefaultRoute(role: UserRole): string {
-  switch (role) {
-    case 'admin': return '/dashboard';
-    case 'analyst': return '/dashboard/analytics';
-    case 'content_manager': return '/dashboard/cms';
-    case 'operations': return '/dashboard/submissions';
-    case 'hr_manager': return '/dashboard/careers';
-    default: return '/dashboard';
-  }
+  // All roles now redirect to the central Overview dashboard as the primary entry point
+  return '/dashboard/overview';
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);

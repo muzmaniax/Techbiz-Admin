@@ -30,8 +30,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     
     if (!isLoading && isAuthenticated && user) {
       const module = pathname.split('/')[2]; // /dashboard/[module]
-      if (module && module !== 'settings' && !hasAccess(module as any)) {
-        router.push('/dashboard');
+      if (module && module !== 'settings' && module !== 'overview' && !hasAccess(module as any)) {
+        router.push('/dashboard/overview');
       }
     }
   }, [pathname, isLoading, isAuthenticated, user, hasAccess, router]);

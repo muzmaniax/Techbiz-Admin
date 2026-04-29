@@ -77,23 +77,43 @@ export default function OpportunitiesPage() {
     <div className="animate-fade-in">
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 28 }}>
         <div>
-          <h1 style={{ fontSize: 24, fontWeight: 800, color: 'var(--text-primary)', marginBottom: 4 }}>Careers & Opportunities</h1>
+          <h1 style={{ fontSize: 24, fontWeight: 500, color: 'var(--text-primary)', marginBottom: 4 }}>Careers & Opportunities</h1>
           <p style={{ fontSize: 14, color: 'var(--text-secondary)' }}>Manage job vacancies, internships, and applicant tracking</p>
         </div>
         <div style={{ display: 'flex', gap: 12 }}>
           <div style={{ display: 'flex', background: 'var(--bg-secondary)', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-md)', padding: 4 }}>
             <button 
               onClick={() => setView('listings')}
-              style={{ padding: '6px 16px', borderRadius: 'var(--radius-sm)', fontSize: 13, fontWeight: 600, transition: 'all 0.2s', border: 'none', cursor: 'pointer', background: view === 'listings' ? 'var(--brand-cyan)' : 'transparent', color: view === 'listings' ? '#000' : 'var(--text-secondary)' }}
+              style={{ padding: '6px 16px', borderRadius: 'var(--radius-sm)', fontSize: 13, fontWeight: 500, transition: 'all 0.2s', border: 'none', cursor: 'pointer', background: view === 'listings' ? 'var(--brand-cyan)' : 'transparent', color: view === 'listings' ? '#000' : 'var(--text-secondary)' }}
             >
               Listings
             </button>
             <button 
               onClick={() => setView('applicants')}
-              style={{ padding: '6px 16px', borderRadius: 'var(--radius-sm)', fontSize: 13, fontWeight: 600, transition: 'all 0.2s', border: 'none', cursor: 'pointer', background: view === 'applicants' ? 'var(--brand-cyan)' : 'transparent', color: view === 'applicants' ? '#000' : 'var(--text-secondary)' }}
+              style={{ 
+                padding: '6px 16px', 
+                borderRadius: 'var(--radius-sm)', 
+                fontSize: 13, 
+                fontWeight: 500, 
+                transition: 'all 0.2s', 
+                border: 'none', 
+                cursor: 'pointer', 
+                background: view === 'applicants' ? 'var(--brand-cyan)' : 'transparent', 
+                color: view === 'applicants' ? '#000' : 'var(--text-secondary)',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 4
+              }}
             >
               Applicants
-              <span style={{ marginLeft: 6, fontSize: 11, padding: '1px 6px', borderRadius: 10, background: 'rgba(0,0,0,0.1)' }}>{applicants.length}</span>
+              <span style={{ 
+                fontSize: 10, 
+                fontWeight: 500, 
+                color: view === 'applicants' ? 'rgba(0,0,0,0.5)' : 'var(--text-tertiary)',
+                marginLeft: 2
+              }}>
+                {applicants.length}
+              </span>
             </button>
           </div>
           <Link href="/dashboard/careers/new" className="btn btn-primary" style={{ height: 42, padding: '0 20px', display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -105,7 +125,7 @@ export default function OpportunitiesPage() {
 
       {view === 'listings' ? (
         <>
-          {/* Interactive Stat Cards - Top Level Filtering */}
+          {/* Informational Stat Cards */}
           <div className="module-grid" style={{ marginBottom: 32 }}>
             {[
               { id: 'all_active', label: 'Total Active', value: opportunities.filter((o: Opportunity) => o.status === 'published').length, color: 'var(--brand-cyan)' },
@@ -115,23 +135,18 @@ export default function OpportunitiesPage() {
             ].map((stat: { id: string, label: string, value: number, color: string, secondary?: string }) => (
               <div 
                 key={stat.id}
-                className={`card ${activeStat === stat.id ? 'active-filter' : ''}`} 
+                className="card-metric" 
                 style={{ 
-                  padding: 24, 
-                  cursor: 'pointer',
-                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                  background: activeStat === stat.id ? 'var(--brand-cyan-muted)' : 'var(--bg-secondary)',
-                  border: activeStat === stat.id ? '1px solid var(--brand-cyan)' : '1px solid var(--border-color)',
-                  transform: activeStat === stat.id ? 'translateY(-4px)' : 'none',
-                  boxShadow: activeStat === stat.id ? '0 12px 24px rgba(0, 215, 255, 0.1)' : 'none'
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 12
                 }}
-                onClick={() => setActiveStat(stat.id)}
               >
-                <div style={{ fontSize: 12, color: activeStat === stat.id ? 'var(--brand-cyan)' : 'var(--text-secondary)', marginBottom: 12, textTransform: 'uppercase', fontWeight: 600, letterSpacing: '0.05em' }}>
+                <div style={{ fontSize: 12, color: 'var(--text-tertiary)', textTransform: 'uppercase', fontWeight: 500, letterSpacing: '0.05em' }}>
                   {stat.label}
                 </div>
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
-                  <div style={{ fontSize: 32, fontWeight: 800, color: activeStat === stat.id ? 'var(--brand-cyan)' : 'var(--text-primary)' }}>
+                  <div style={{ fontSize: 32, fontWeight: 500, color: 'var(--text-primary)' }}>
                     {stat.value}
                   </div>
                   {stat.secondary && (
@@ -151,8 +166,24 @@ export default function OpportunitiesPage() {
                     key={t}
                     className={`btn btn-sm ${filter === t ? 'btn-primary' : 'btn-secondary'}`}
                     onClick={() => setFilter(t)}
+                    style={{ 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      gap: 4, 
+                      paddingLeft: 12, 
+                      paddingRight: 12,
+                      transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)'
+                    }}
                   >
-                    {t.charAt(0).toUpperCase() + t.slice(1)}s
+                    <span style={{ fontWeight: 500 }}>{t.charAt(0).toUpperCase() + t.slice(1)}s</span>
+                    <span style={{ 
+                      fontSize: 10, 
+                      fontWeight: 500, 
+                      color: filter === t ? 'rgba(0,0,0,0.5)' : 'var(--text-tertiary)',
+                      marginLeft: 2
+                    }}>
+                      {t === 'all' ? opportunities.length : opportunities.filter(o => o.type === t).length}
+                    </span>
                   </button>
                 ))}
               </div>
@@ -182,12 +213,12 @@ export default function OpportunitiesPage() {
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
-                  <div style={{ width: 52, height: 52, borderRadius: 'var(--radius-lg)', background: 'var(--bg-tertiary)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--brand-cyan)', border: '1px solid var(--border-color)' }}>
-                    {typeIcons[opp.type]}
+                  <div style={{ color: 'var(--brand-cyan)', flexShrink: 0, width: 32, display: 'flex', justifyContent: 'center' }}>
+                    {React.cloneElement(typeIcons[opp.type] as React.ReactElement<any>, { size: 28 })}
                   </div>
                   <div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 4 }}>
-                      <h3 style={{ fontSize: 16, fontWeight: 700, color: 'var(--text-primary)' }}>{opp.title}</h3>
+                      <h3 style={{ fontSize: 16, fontWeight: 500, color: 'var(--text-primary)' }}>{opp.title}</h3>
                       <span className={`badge badge-${statusColors[opp.status]}`}>{opp.status}</span>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
@@ -203,7 +234,7 @@ export default function OpportunitiesPage() {
 
                 <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
                   <div style={{ textAlign: 'right' }}>
-                    <div style={{ fontSize: 18, fontWeight: 800, color: 'var(--text-primary)' }}>{opp.applicantCount}</div>
+                    <div style={{ fontSize: 18, fontWeight: 500, color: 'var(--text-primary)' }}>{opp.applicantCount}</div>
                     <div style={{ fontSize: 12, color: 'var(--text-tertiary)' }}>Applicants</div>
                   </div>
                   <div style={{ display: 'flex', gap: 8 }}>
@@ -248,12 +279,12 @@ export default function OpportunitiesPage() {
                   }}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-                    <div style={{ width: 44, height: 44, borderRadius: '50%', background: 'var(--bg-tertiary)', border: '1px solid var(--border-color)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 700, color: 'var(--brand-cyan)' }}>
+                    <div style={{ width: 44, height: 44, borderRadius: '50%', background: 'var(--bg-tertiary)', border: '1px solid var(--border-color)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 500, color: 'var(--brand-cyan)' }}>
                       {app.name.charAt(0)}
                     </div>
                     <div>
-                      <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--text-primary)' }}>{app.name}</div>
-                      <div style={{ fontSize: 12, color: 'var(--text-secondary)' }}>Applied for: <span style={{ fontWeight: 600, color: 'var(--text-primary)' }}>{app.subject}</span></div>
+                      <div style={{ fontSize: 15, fontWeight: 500, color: 'var(--text-primary)' }}>{app.name}</div>
+                      <div style={{ fontSize: 12, color: 'var(--text-secondary)' }}>Applied for: <span style={{ fontWeight: 500, color: 'var(--text-primary)' }}>{app.subject}</span></div>
                     </div>
                   </div>
 
@@ -276,7 +307,7 @@ export default function OpportunitiesPage() {
             ) : (
               <div style={{ padding: 60, textAlign: 'center' }}>
                 <Users size={48} style={{ color: 'var(--text-tertiary)', opacity: 0.2, marginBottom: 16 }} />
-                <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--text-secondary)' }}>No applicants found</div>
+                <div style={{ fontSize: 16, fontWeight: 500, color: 'var(--text-secondary)' }}>No applicants found</div>
               </div>
             )}
           </div>

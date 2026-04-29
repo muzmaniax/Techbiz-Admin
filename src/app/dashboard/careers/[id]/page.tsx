@@ -47,7 +47,7 @@ export default function OpportunityDetailsPage() {
           </Link>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
-              <h1 style={{ fontSize: 24, fontWeight: 800, color: 'var(--text-primary)' }}>{opportunity.title}</h1>
+              <h1 style={{ fontSize: 24, fontWeight: 500, color: 'var(--text-primary)' }}>{opportunity.title}</h1>
               <span className={`badge badge-${opportunity.status === 'published' ? 'success' : 'info'}`} style={{ fontSize: 11 }}>
                 {opportunity.status}
               </span>
@@ -96,7 +96,7 @@ export default function OpportunityDetailsPage() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
           <div className="card" style={{ padding: 32 }}>
             <section style={{ marginBottom: 40 }}>
-              <h2 style={{ fontSize: 18, fontWeight: 700, color: 'var(--text-primary)', marginBottom: 16 }}>Description</h2>
+              <h2 style={{ fontSize: 18, fontWeight: 500, color: 'var(--text-primary)', marginBottom: 16 }}>Description</h2>
               <p style={{ fontSize: 15, color: 'var(--text-secondary)', lineHeight: 1.8 }}>
                 We are looking for a motivated and skilled {opportunity.title} to join our {opportunity.department} team. 
                 At TechBiz, we value innovation, collaboration, and high-quality engineering. 
@@ -105,7 +105,7 @@ export default function OpportunityDetailsPage() {
             </section>
 
             <section>
-              <h2 style={{ fontSize: 18, fontWeight: 700, color: 'var(--text-primary)', marginBottom: 16 }}>Requirements</h2>
+              <h2 style={{ fontSize: 18, fontWeight: 500, color: 'var(--text-primary)', marginBottom: 16 }}>Requirements</h2>
               <ul style={{ display: 'flex', flexDirection: 'column', gap: 12, paddingLeft: 20 }}>
                 <li style={{ fontSize: 14, color: 'var(--text-secondary)', lineHeight: 1.6 }}>5+ years of experience in {opportunity.department}-related fields.</li>
                 <li style={{ fontSize: 14, color: 'var(--text-secondary)', lineHeight: 1.6 }}>Strong proficiency in modern technologies and best practices.</li>
@@ -120,28 +120,28 @@ export default function OpportunityDetailsPage() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
           {/* Quick Stats */}
           <div className="card" style={{ padding: 24 }}>
-            <h3 style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-primary)', marginBottom: 20 }}>Opportunity Performance</h3>
+            <h3 style={{ fontSize: 14, fontWeight: 500, color: 'var(--text-primary)', marginBottom: 20 }}>Opportunity Performance</h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                   <Users size={16} style={{ color: 'var(--brand-cyan)' }} />
                   <span style={{ fontSize: 13, color: 'var(--text-secondary)' }}>Applicants</span>
                 </div>
-                <span style={{ fontSize: 18, fontWeight: 700, color: 'var(--text-primary)' }}>{opportunity.applicantCount}</span>
+                <span style={{ fontSize: 18, fontWeight: 500, color: 'var(--text-primary)' }}>{opportunity.applicantCount}</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                   <Eye size={16} style={{ color: 'var(--brand-cyan)' }} />
                   <span style={{ fontSize: 13, color: 'var(--text-secondary)' }}>Total Views</span>
                 </div>
-                <span style={{ fontSize: 18, fontWeight: 700, color: 'var(--text-primary)' }}>1,248</span>
+                <span style={{ fontSize: 18, fontWeight: 500, color: 'var(--text-primary)' }}>1,248</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                   <CheckCircle2 size={16} style={{ color: 'var(--brand-cyan)' }} />
                   <span style={{ fontSize: 13, color: 'var(--text-secondary)' }}>Conv. Rate</span>
                 </div>
-                <span style={{ fontSize: 18, fontWeight: 700, color: 'var(--text-primary)' }}>4.2%</span>
+                <span style={{ fontSize: 18, fontWeight: 500, color: 'var(--text-primary)' }}>4.2%</span>
               </div>
             </div>
             <div style={{ marginTop: 24, paddingTop: 20, borderTop: '1px solid var(--border-color)' }}>
@@ -154,7 +154,7 @@ export default function OpportunityDetailsPage() {
           <div className="card" style={{ padding: 20, background: 'var(--bg-tertiary)', border: '1px solid var(--border-color)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
               <Clock size={16} style={{ color: 'var(--text-secondary)' }} />
-              <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--text-primary)' }}>Timeline</span>
+              <span style={{ fontSize: 13, fontWeight: 500, color: 'var(--text-primary)' }}>Timeline</span>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12 }}>

@@ -32,7 +32,7 @@ export default function SettingsPage() {
     return (
       <div className="animate-fade-in" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '60vh', textAlign: 'center' }}>
         <Shield size={64} style={{ color: 'var(--text-tertiary)', marginBottom: 20, opacity: 0.2 }} />
-        <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--text-primary)' }}>Access Restricted</h2>
+        <h2 style={{ fontSize: 20, fontWeight: 500, color: 'var(--text-primary)' }}>Access Restricted</h2>
         <p style={{ fontSize: 14, color: 'var(--text-secondary)', marginTop: 8, maxWidth: 400 }}>
           Only system administrators have permission to access settings, user management, and audit logs.
         </p>
@@ -52,7 +52,7 @@ export default function SettingsPage() {
   return (
     <div>
       <div style={{ marginBottom: 24 }}>
-        <h1 style={{ fontSize: 24, fontWeight: 800, color: 'var(--text-primary)', marginBottom: 4 }}>Settings</h1>
+        <h1 style={{ fontSize: 24, fontWeight: 500, color: 'var(--text-primary)', marginBottom: 4 }}>Settings</h1>
         <p style={{ fontSize: 14, color: 'var(--text-secondary)' }}>Manage users, roles, and system activity</p>
       </div>
 
@@ -67,7 +67,7 @@ export default function SettingsPage() {
               background: 'transparent', border: 'none', cursor: 'pointer',
               color: activeTab === tab.id ? 'var(--brand-cyan)' : 'var(--text-secondary)',
               borderBottom: activeTab === tab.id ? '2px solid var(--brand-cyan)' : '2px solid transparent',
-              fontSize: 14, fontWeight: 600, transition: 'all var(--transition-fast)',
+              fontSize: 14, fontWeight: 500, transition: 'all var(--transition-fast)',
               fontFamily: 'inherit',
               marginBottom: -1,
             }}
@@ -117,13 +117,13 @@ export default function SettingsPage() {
                               width: 34, height: 34, borderRadius: 'var(--radius-md)',
                               background: 'linear-gradient(135deg, var(--brand-cyan), var(--brand-cyan))',
                               display: 'flex', alignItems: 'center', justifyContent: 'center',
-                              fontSize: 12, fontWeight: 700, color: '#000',
+                              fontSize: 12, fontWeight: 500, color: '#000',
                             }}
                           >
                             {getInitials(user.name)}
                           </div>
                           <div>
-                            <div style={{ fontWeight: 600, fontSize: 14 }}>{user.name}</div>
+                            <div style={{ fontWeight: 500, fontSize: 14 }}>{user.name}</div>
                             <div style={{ fontSize: 12, color: 'var(--text-tertiary)' }}>{user.email}</div>
                           </div>
                         </div>
@@ -142,11 +142,11 @@ export default function SettingsPage() {
                       <td style={{ fontSize: 13, color: 'var(--text-secondary)' }}>{formatDate(user.createdAt)}</td>
                       <td>
                         <div style={{ display: 'flex', gap: 4 }}>
-                          <button className="btn btn-ghost btn-sm" style={{ padding: 6 }}>
-                            <Edit2 size={14} />
+                          <button className="btn btn-ghost btn-sm" style={{ padding: 6, color: 'var(--brand-cyan)' }}>
+                            <Edit2 size={16} />
                           </button>
                           <button className="btn btn-ghost btn-sm" style={{ padding: 6, color: 'var(--danger)' }}>
-                            <Trash2 size={14} />
+                            <Trash2 size={16} />
                           </button>
                         </div>
                       </td>
@@ -179,7 +179,7 @@ export default function SettingsPage() {
                     <td>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                         <Shield size={16} style={{ color: 'var(--brand-cyan)' }} />
-                        <span style={{ fontWeight: 600, textTransform: 'capitalize' }}>
+                        <span style={{ fontWeight: 500, textTransform: 'capitalize' }}>
                           {getRoleLabel(role as UserRole)}
                         </span>
                       </div>
@@ -230,7 +230,7 @@ export default function SettingsPage() {
                   </div>
                   <div style={{ flex: 1 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 3 }}>
-                      <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--text-primary)' }}>{entry.user}</span>
+                      <span style={{ fontSize: 14, fontWeight: 500, color: 'var(--text-primary)' }}>{entry.user}</span>
                       <span
                         className="badge"
                         style={{
@@ -270,7 +270,7 @@ export default function SettingsPage() {
             }}
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
-              <h2 style={{ fontSize: 18, fontWeight: 700, color: 'var(--text-primary)' }}>Add New User</h2>
+              <h2 style={{ fontSize: 18, fontWeight: 500, color: 'var(--text-primary)' }}>Add New User</h2>
               <button className="btn btn-ghost btn-sm" onClick={() => setShowAddUser(false)} style={{ padding: 6 }}>
                 <X size={18} />
               </button>
