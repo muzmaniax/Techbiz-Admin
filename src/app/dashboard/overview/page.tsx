@@ -284,7 +284,7 @@ export default function DashboardHome() {
       </div>
 
       {/* Row 3: Role-Specific KPI Cards (4 max) */}
-      <div className="module-grid" style={{ gridTemplateColumns: 'repeat(4, 1fr)' }}>
+      <div className="compact-grid">
         {roleKPIs.map((kpi, i) => (
           <QuickStat key={kpi.label} {...kpi} />
         ))}
@@ -305,8 +305,8 @@ export default function DashboardHome() {
                   key={sub.id} 
                   href="/dashboard/submissions" 
                   style={{ 
-                    display: 'flex', alignItems: 'center', gap: 16, padding: '12px 16px', borderRadius: 'var(--radius-md)',
-                    textDecoration: 'none', transition: 'background 0.2s'
+                    display: 'flex', alignItems: 'center', gap: 16, padding: '16px', borderRadius: 'var(--radius-md)',
+                    textDecoration: 'none', transition: 'background 0.2s', minHeight: '56px'
                   }}
                   onMouseEnter={(e) => e.currentTarget.style.background = 'var(--bg-tertiary)'}
                   onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
@@ -328,14 +328,9 @@ export default function DashboardHome() {
         {/* Right: Control Modules + Secondary (4 columns) */}
         <div className="bento-span-4" style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
           {/* Control Modules (Structured 2x2 Grid) */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
              <h3 style={{ fontSize: 12, fontWeight: 500, color: 'var(--text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 8 }}>Control Modules</h3>
-             <div style={{ 
-               display: 'grid', 
-               gridTemplateColumns: 'repeat(2, 1fr)', 
-               gap: 12,
-               width: '100%'
-             }}>
+             <div className="compact-grid" style={{ width: '100%' }}>
                {hasAccess('analytics') && (
                 <ModuleCard title="Analytics" description="Real-time data" icon={<BarChart3 />} href="/dashboard/analytics" stat="3.8%" statLabel="conv" delay={0} />
               )}

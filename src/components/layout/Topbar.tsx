@@ -26,6 +26,7 @@ export default function Topbar() {
 
   return (
     <header
+      className="topbar-responsive"
       style={{
         height: 'var(--topbar-height)',
         background: 'var(--bg-secondary)',
@@ -40,19 +41,17 @@ export default function Topbar() {
         backdropFilter: 'blur(12px)',
       }}
     >
-      {/* Left: Breadcrumb + Menu Toggle */}
+      {/* Left: Breadcrumb */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-        <button
-          className="show-mobile btn btn-ghost btn-sm"
-          onClick={toggleMobileSidebar}
-          style={{ padding: 8, minWidth: 0, color: 'var(--text-secondary)' }}
-        >
-          <Menu size={20} />
-        </button>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }} className="hide-mobile">
           <span style={{ fontSize: 13, color: 'var(--text-tertiary)' }}>Dashboard</span>
           <ChevronRight size={14} style={{ color: 'var(--text-tertiary)' }} />
           <span style={{ fontSize: 14, fontWeight: 500, letterSpacing: '-0.04em', color: 'var(--text-primary)' }}>
+            {currentPage}
+          </span>
+        </div>
+        <div className="show-mobile">
+          <span style={{ fontSize: 16, fontWeight: 600, letterSpacing: '-0.04em', color: 'var(--text-primary)' }}>
             {currentPage}
           </span>
         </div>

@@ -40,23 +40,24 @@ export default function Sidebar() {
   const filteredNav = navItems.filter((item) => hasAccess(item.module));
 
   return (
-    <aside
-      className={`sidebar-responsive ${mobileSidebarOpen ? 'sidebar-open' : ''}`}
-      style={{
-        width: collapsed ? 'var(--sidebar-collapsed)' : 'var(--sidebar-width)',
-        minHeight: '100vh',
-        background: 'var(--bg-secondary)',
-        borderRight: '1px solid var(--border-color)',
-        display: 'flex',
-        flexDirection: 'column',
-        transition: 'width var(--transition-slow), transform var(--transition-slow)',
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        zIndex: 50, // Higher than topbar for mobile
-        overflow: 'hidden',
-      }}
-    >
+    <>
+      <aside
+        className="sidebar-responsive hide-mobile"
+        style={{
+          width: collapsed ? 'var(--sidebar-collapsed)' : 'var(--sidebar-width)',
+          minHeight: '100vh',
+          background: 'var(--bg-secondary)',
+          borderRight: '1px solid var(--border-color)',
+          display: 'flex',
+          flexDirection: 'column',
+          transition: 'width var(--transition-slow)',
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          zIndex: 50,
+          overflow: 'hidden',
+        }}
+      >
       {/* Logo */}
       <div
         style={{
@@ -262,5 +263,50 @@ export default function Sidebar() {
         </button>
       </div>
     </aside>
+      
+      {/* Mobile Bottom Navigation */}
+      <nav className="bottom-nav show-mobile">
+        <Link
+          href="/dashboard/overview"
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: 4,
+            padding: '8px 12px',
+            color: pathname === '/dashboard/overview' ? 'var(--brand-cyan)' : 'var(--text-secondary)',
+            textDecoration: 'none',
+            fontSize: 10,
+            fontWeight: 500,
+          }}
+        >
+          <Zap size={20} />
+          <span>Home</span>
+        </Link>
+        {filteredNav.map((item) => {
+          const isActive = pathname.startsWith(item.href);
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: 4,
+                padding: '8px 12px',
+                color: isActive ? 'var(--brand-cyan)' : 'var(--text-secondary)',
+                textDecoration: 'none',
+                fontSize: 10,
+                fontWeight: 500,
+              }}
+            >
+              {React.cloneElement(item.icon as React.ReactElement<any>, { size: 20 })}
+              <span>{item.label.split(' ')[0]}</span>
+            </Link>
+          );
+        })}
+      </nav>
+    </>
   );
 }

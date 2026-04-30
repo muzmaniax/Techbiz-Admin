@@ -108,6 +108,18 @@ label {
   letter-spacing: -0.04em;
 }
 
+/* Touch Targets & Active States */
+button, a, .card-interactive, .btn {
+  -webkit-tap-highlight-color: transparent;
+}
+.card-interactive:active {
+  transform: scale(0.98);
+  background: var(--bg-tertiary);
+}
+.btn:active {
+  transform: scale(0.96);
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
@@ -520,13 +532,14 @@ tr:hover td {
 
 .module-grid {
   display: grid;
-  gap: 24px;
+  gap: 16px;
   grid-template-columns: repeat(1, 1fr);
   grid-auto-rows: 1fr; /* Ensures equal height in a single row */
 }
 
 @media (min-width: 768px) {
   .module-grid {
+    gap: 24px;
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -594,12 +607,13 @@ tr:hover td {
 .compact-grid {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  gap: 20px;
+  gap: 16px;
 }
 
 @media (min-width: 768px) {
   .compact-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
   }
 }
 
@@ -624,22 +638,53 @@ tr:hover td {
 /* Responsive Helpers */
 @media (max-width: 1024px) {
   .sidebar-responsive {
-    transform: translateX(-100%);
-    box-shadow: 0 0 40px rgba(0,0,0,0.5);
-  }
-  .sidebar-open {
-    transform: translateX(0);
+    display: none !important;
   }
   .main-responsive {
     margin-left: 0 !important;
+    padding-bottom: 72px; /* Space for bottom nav */
   }
   .hide-mobile {
     display: none !important;
+  }
+  
+  .bottom-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 72px;
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+    z-index: 50;
+    justify-content: space-around;
+    align-items: center;
+    padding-bottom: env(safe-area-inset-bottom);
+    backdrop-filter: blur(12px);
+  }
+  .topbar-responsive {
+    padding: 0 16px !important;
   }
 }
 
 @media (min-width: 1025px) {
   .show-mobile {
     display: none !important;
+  }
+}
+
+/* Main Content Padding */
+.main-content {
+  flex: 1;
+  padding: 20px 16px;
+  max-width: 1600px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .main-content {
+    padding: 28px 32px;
   }
 }

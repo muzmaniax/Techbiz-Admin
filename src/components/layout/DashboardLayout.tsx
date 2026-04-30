@@ -65,15 +65,6 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   return (
     <div style={{ display: 'flex', minHeight: '100vh', background: 'var(--bg-primary)' }}>
-      {/* Mobile Overlay */}
-      {mobileSidebarOpen && (
-        <div 
-          className="overlay show-mobile" 
-          onClick={toggleMobileSidebar}
-          style={{ zIndex: 40 }}
-        />
-      )}
-      
       <Sidebar />
       <div
         className="main-responsive"
@@ -89,14 +80,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         <Topbar />
         <main
           key={pathname}
-          className="animate-fade-in"
-          style={{
-            flex: 1,
-            padding: '28px 32px',
-            maxWidth: 1600,
-            margin: '0 auto',
-            width: '100%',
-          }}
+          className="animate-fade-in main-content"
         >
           {children}
         </main>
